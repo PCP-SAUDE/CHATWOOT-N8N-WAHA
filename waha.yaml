@@ -1,20 +1,13 @@
 services:
   waha:
-    image: devlikeapro/waha:latest
-    environment:
-      WHATSAPP_HOOK_URL: http://n8n.pcpsaude.com.br:5678/webhook/webhook
-      WHATSAPP_DEFAULT_ENGINE: GOWS
-      WHATSAPP_HOOK_EVENTS: message
-      WAHA_NO_API_KEY: true
-      WAHA_DASHBOARD_NO_PASSWORD: true
-      WHATSAPP_SWAGGER_NO_PASSWORD: true
-      WAHA_APPS_ENABLED: true
-      REDIS_URL: redis://:default@redis:6379
+    image: devlikeapro/waha
+    env_file:
+      - .env
+    ports:
+      - "3003:3000"
     volumes:
       - waha_sessions:/app/.sessions
       - waha_media:/app/.media
-    ports:
-      - "3003:3000"
 
 volumes:
   waha_sessions:

@@ -2,13 +2,13 @@ edite o env e o
 
 1- EXECUTE PRIMEIRO O CHATWOOT
 
- docker compose run --rm rails bundle exec rails db:chatwoot_prepare
+ docker compose -f chatwoot.yaml run --rm rails bundle exec rails db:chatwoot_prepare
 
 Depois
 
 2 - EXECUTE TODOS PARA FICAR UP
  
-docker compose -f n8n.yml -f waha.yml -f chatwoot.yml up -d
+docker compose -f n8n.yaml -f waha.yaml -f chatwoot.yaml up -d
 
 
 WEB ----
