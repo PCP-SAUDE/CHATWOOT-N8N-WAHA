@@ -81,40 +81,5 @@ Your Chatwoot installation should be accessible from the https://yourdomain.com 
 Steps to build images yourself
 We publish our base images to the Docker hub. You should be able to build your Chatwoot web/worker images from these base images.
 ​
-Web
 
-Copy
-FROM chatwoot/chatwoot:latest
-RUN chmod +x docker/entrypoints/rails.sh
-ENTRYPOINT ["docker/entrypoints/rails.sh"]
-CMD bundle exec bundle exec rails s -b 0.0.0.0 -p 3000
-​
-Worker
-
-Copy
-FROM chatwoot/chatwoot:latest
-RUN chmod +x docker/entrypoints/rails.sh
-ENTRYPOINT ["docker/entrypoints/rails.sh"]
-CMD bundle exec sidekiq -C config/sidekiq.yml
-The app servers will run available on port 3000. Ensure the images connect to the same database and Redis servers. Provide the configuration for these services via environment variables.
-​
-Initial database setup
-To set up the database for the first time, you must run rails db:chatwoot_prepare. You may get errors if you try to run rails db:migrate at this point.
-​
-Upgrading
-If you’re not using the latest or latest-ce tag, you first need to change the desired tag in your docker-compose file.
-After that you can pull the new image and start using them:
-
-Copy
-docker compose pull
-docker compose up -d
-Finally you may need to update the database:
-
-Copy
-docker compose run --rm rails bundle exec rails db:chatwoot_prepare
-​
-Running Rails Console
-
-Copy
-docker exec -it $(basename $(pwd))-rails-1 sh -c 'RAILS_ENV=production bundle 
-
+<img width="598" height="335" alt="image" src="https://github.com/user-attachments/assets/0744edb4-f6d9-4f24-835a-d254d5648000" />
